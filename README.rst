@@ -3,7 +3,7 @@ Prerequisites
 
 Install all necessary ports::
 
-    sudo port -v install libmpc oniguruma5 cclient tbb boost
+    sudo port -v install libmpc boost
 
 
 Ubuntu Deps
