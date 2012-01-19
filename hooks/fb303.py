@@ -8,7 +8,9 @@ def premake(options, buildout):
     # import pdb; pdb.set_trace()
     basedir = options['path']
     makefile_list = [os.path.join(basedir, "Makefile"), 
-            os.path.join(basedir, "cpp", "Makefile")]
+            os.path.join(basedir, "cpp", "Makefile"),
+            os.path.join(basedir, "py", "Makefile")
+            ]
 
     log.debug('pre-make-hook on %s' % basedir)
 
