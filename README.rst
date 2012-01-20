@@ -13,16 +13,28 @@ but this seems useless to me.
 Prerequisites
 -------------
 
+MacOSX
+......
+
 Install all necessary ports::
 
     sudo port -v install libevent boost
 
-Ubuntu Deps
------------
+Ubuntu (untested)
+.................
 
 Install::
     
     sudo aptitude install libc-client2007e-dev 
+
+Installation
+------------
+
+As usual for buildout, do the following two commands to setup the
+sandbox::
+
+    python bootstrap.py
+    bin/buildout -vvN
 
 Credits
 -------
@@ -35,4 +47,4 @@ Problems
 
 Since now the compile dies during scribe itself, when thrift and stuff
 has been built and is in use. Don't know the reason for that yet - 
-I'm not a c++ guy. 
+I'm not a c++ guy.
