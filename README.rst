@@ -73,10 +73,26 @@ is no success.
       "virtual thunk to facebook::fb303::FacebookBase::aliveSince()", referenced from:
           vtable for scribeHandlerin scribe_server.o
           construction vtable for facebook::fb303::FacebookBase-in-scribeHandlerin scribe_server.o
-    ld: symbol(s) not found for architecture x86_64
+     ld: symbol(s) not found for architecture x86_64
     collect2: ld returned 1 exit status
     make[3]: *** [scribed] Error 1
     make[2]: *** [all] Error 2
     make[1]: *** [all-recursive] Error 1
     make: *** [all] Error 2
 
+Thrift 0.5.0
+............
+
+::
+
+    g++ -DPACKAGE_NAME=\"scribe\" -DPACKAGE_TARNAME=\"scribe\" -DPACKAGE_VERSION=\"1.5.0\" -DPACKAGE_STRING=\"scribe\ 1.5.0\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"scribe\" -DVERSION=\"1.5.0\" -DHAVE_BOOST=/\*\*/ -DHAVE_BOOST_SYSTEM=/\*\*/ -DHAVE_BOOST_FILESYSTEM=/\*\*/ -I.  -I.. -I/Users/andi/project/scribe/parts/thrift/include -I/Users/andi/project/scribe/parts/thrift/include/thrift -I/Users/andi/project/scribe/parts/thrift/include/thrift -I/Users/andi/project/scribe/parts/thrift/include/thrift/fb303 -I/usr/local/include -I/opt/local/include   -I /Users/andi/project/scribe/parts/trift/share  -Wall -O3 -MT store.o -MD -MP -MF .deps/store.Tpo -c -o store.o store.cpp
+    In file included from store.cpp:27:
+    scribe_server.h:45: error: conflicting return type specified for ‘virtual scribe::thrift::ResultCode scribeHandler::Log(const std::vector<scribe::thrift::LogEntry, std::allocator<scribe::thrift::LogEntry> >&)’
+    ../src/gen-cpp/scribe.h:18: error:   overriding ‘virtual scribe::thrift::ResultCode::type scribe::thrift::scribeIf::Log(const std::vector<scribe::thrift::LogEntry, std::allocator<scribe::thrift::LogEntry> >&)’
+    /opt/local/include/boost/system/error_code.hpp:214: warning: ‘boost::system::posix_category’ defined but not used
+    /opt/local/include/boost/system/error_code.hpp:215: warning: ‘boost::system::errno_ecat’ defined but not used
+    /opt/local/include/boost/system/error_code.hpp:216: warning: ‘boost::system::native_ecat’ defined but not used
+    make[3]: *** [store.o] Error 1
+    make[2]: *** [all] Error 2
+    make[1]: *** [all-recursive] Error 1
+    make: *** [all] Error 2
