@@ -48,3 +48,35 @@ Problems
 Since now the compile dies during scribe itself, when thrift and stuff
 has been built and is in use. Don't know the reason for that yet - 
 I'm not a c++ guy.
+
+Compiling thrift 0.4.0
+......................
+
+This helps: change ``->filename( )`` to ``->path( ).filename( ).string( )`` 
+http://www.codelain.com/forum/index.php?topic=16462.0 but still there 
+is no success.
+
+::
+
+    g++ -DPACKAGE_NAME=\"scribe\" -DPACKAGE_TARNAME=\"scribe\" -DPACKAGE_VERSION=\"1.5.0\" -DPACKAGE_STRING=\"scribe\ 1.5.0\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"scribe\" -DVERSION=\"1.5.0\" -DHAVE_BOOST=/\*\*/ -DHAVE_BOOST_SYSTEM=/\*\*/ -DHAVE_BOOST_FILESYSTEM=/\*\*/ -I.  -I.. -I/Users/andi/project/scribe/parts/thrift/include -I/Users/andi/project/scribe/parts/thrift/include/thrift -I/Users/andi/project/scribe/parts/thrift/include/thrift -I/Users/andi/project/scribe/parts/thrift/include/thrift/fb303 -I/usr/local/include -I/opt/local/include   -I /Users/andi/project/scribe/parts/trift/share  -Wall -O3 -MT scribe_server.o -MD -MP -MF .deps/scribe_server.Tpo -c -o scribe_server.o scribe_server.cpp
+    mv -f .deps/scribe_server.Tpo .deps/scribe_server.Po
+    g++  -Wall -O3 -L/opt/local/lib -lboost_system-mt -lboost_filesystem-mt  -o scribed store.o store_queue.o conf.o file.o conn_pool.o scribe_server.o   -L/Users/andi/project/scribe/parts/thrift/lib -L/Users/andi/project/scribe/parts/thrift/lib -L/usr/local/lib -lfb303 -lthrift -lthriftnb -levent -lpthread  libscribe.a 
+    ld: warning: directory not found for option '-L/usr/local/lib'
+    Undefined symbols for architecture x86_64:
+      "vtable for apache::thrift::protocol::TBinaryProtocol", referenced from:
+          apache::thrift::protocol::TBinaryProtocol::TBinaryProtocol(boost::shared_ptr<apache::thrift::transport::TTransport>)in conn_pool.o
+          apache::thrift::protocol::TBinaryProtocol::TBinaryProtocol(boost::shared_ptr<apache::thrift::transport::TTransport>, int, int, bool, bool)in scribe_server.o
+      NOTE: a missing vtable usually means the first non-inline virtual member function has no definition.
+      "virtual thunk to facebook::fb303::FacebookBase::getName(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&)", referenced from:
+          vtable for scribeHandlerin scribe_server.o
+          construction vtable for facebook::fb303::FacebookBase-in-scribeHandlerin scribe_server.o
+      "virtual thunk to facebook::fb303::FacebookBase::aliveSince()", referenced from:
+          vtable for scribeHandlerin scribe_server.o
+          construction vtable for facebook::fb303::FacebookBase-in-scribeHandlerin scribe_server.o
+    ld: symbol(s) not found for architecture x86_64
+    collect2: ld returned 1 exit status
+    make[3]: *** [scribed] Error 1
+    make[2]: *** [all] Error 2
+    make[1]: *** [all-recursive] Error 1
+    make: *** [all] Error 2
+
